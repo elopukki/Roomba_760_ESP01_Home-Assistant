@@ -1,25 +1,3 @@
-# sensor:
-#   - name: "Roomba Status"
-#     state_topic: "roomba/currentStatus"
-#     unique_id: roomba_status
-#   - name: "Roomba Battery"
-#     state_topic: "roomba/battery"
-#     unit_of_measurement: "%"
-#     unique_id: roomba_battery
-# binary_sensor:
-#     # сюда, при необходимости, бинарные mqtt‑сенсоры
-# switch:
-#   - name: "Roomba"
-#     command_topic: "roomba/commands"
-#     state_topic: "roomba/state"
-#     payload_on: "start"
-#     payload_off: "stop"
-#     qos: 0
-#     retain: false
-#     unique_id: "roomba_switch"
-
-
-
 vacuum:
   - name: "Roomba 760"
     unique_id: roomba_760
