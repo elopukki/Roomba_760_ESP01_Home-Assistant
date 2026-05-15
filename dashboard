@@ -1,0 +1,13 @@
+type: custom:vacuum-card
+entity: vacuum.roomba_760
+name: Roomba 760
+show_name: true
+show_state: true
+show_toolbar: true
+compact_view: false
+icons:
+  start: mdi:play
+  pause: mdi:pause
+  stop: mdi:stop
+  return_home: mdi:home-map-marker
+  locate: mdi:map-marker
