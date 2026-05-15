@@ -1,24 +1,3 @@
-# # sensor.roomba_battery:
-#   friendly_name: "Roomba Battery"
-#   icon: mdi:battery
-
-# switch.roomba:
-#   friendly_name: "Roomba"
-#   icon: mdi:robot-vacuum
-
-# switch.roomba:
-#   friendly_name: "Roomba"
-#   icon: mdi:roomba
-# sensor.roomba:
-#   icon: mdi:roomba
-# sensor.roomba_battery:
-#   friendly_name: "Roomba Battery"
-#   icon: mdi:battery
-#   unit_of_measurement: '%'
-# sensor.roomba_status:
-#   icon: mdi:format-list-bulleted
-
-
 vacuum.roomba_760:
   friendly_name: "Roomba 760"
   icon: mdi:robot-vacuum
