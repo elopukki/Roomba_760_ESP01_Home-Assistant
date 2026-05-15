@@ -1,0 +1,61 @@
+# sensor:
+#   - name: "Roomba Status"
+#     state_topic: "roomba/currentStatus"
+#     unique_id: roomba_status
+#   - name: "Roomba Battery"
+#     state_topic: "roomba/battery"
+#     unit_of_measurement: "%"
+#     unique_id: roomba_battery
+# binary_sensor:
+#     # сюда, при необходимости, бинарные mqtt‑сенсоры
+# switch:
+#   - name: "Roomba"
+#     command_topic: "roomba/commands"
+#     state_topic: "roomba/state"
+#     payload_on: "start"
+#     payload_off: "stop"
+#     qos: 0
+#     retain: false
+#     unique_id: "roomba_switch"
+
+
+
+vacuum:
+  - name: "Roomba 760"
+    unique_id: roomba_760
+    default_entity_id: vacuum.roomba_760
+
+    command_topic: "roomba/commands"
+    state_topic: "roomba/state"
+    availability_topic: "roomba/availability"
+    json_attributes_topic: "roomba/state"
+
+    payload_available: "online"
+    payload_not_available: "offline"
+
+    payload_start: "start"
+    payload_pause: "pause"
+    payload_stop: "stop"
+    payload_return_to_base: "dock"
+    payload_clean_spot: "spot"
+    payload_locate: "find"
+
+    supported_features:
+      - start
+      - pause
+      - stop
+      - return_home
+      - status
+      - locate
+      - clean_spot
+
+    qos: 0
+    retain: false
+
+    device:
+      identifiers:
+        - "roomba_760_esp01"
+      name: "Roomba 760"
+      manufacturer: "iRobot / ESP retrofit"
+      model: "Roomba 760 + ESP-01"
+      sw_version: "mqtt-esp01"

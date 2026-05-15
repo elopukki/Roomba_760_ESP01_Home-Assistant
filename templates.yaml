@@ -1,0 +1,32 @@
+- sensor:
+    - name: "Roomba Battery"
+      unique_id: roomba_battery
+      unit_of_measurement: "%"
+      state: "{{ state_attr('vacuum.roomba_760', 'battery') | int(0) }}"
+      icon: mdi:battery
+ 
+    - name: "Roomba Charging"
+      unique_id: roomba_charging
+      state: >
+        {% if state_attr('vacuum.roomba_760', 'charging') == true %}
+          Charging
+        {% else %}
+          Not charging
+        {% endif %}
+      icon: mdi:battery-charging
+ 
+    - name: "Roomba Bin Full"
+      unique_id: roomba_bin_full
+      state: >
+        {% if state_attr('vacuum.roomba_760', 'bin_full') == true %}
+          Yes
+        {% else %}
+          No
+        {% endif %}
+      icon: mdi:delete-alert
+ 
+    - name: "Roomba Last Command"
+      unique_id: roomba_last_command
+      state: "{{ state_attr('vacuum.roomba_760', 'last_command') | default('unknown') }}"
+      icon: mdi:history
+ 

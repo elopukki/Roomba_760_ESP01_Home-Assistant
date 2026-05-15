@@ -1,0 +1,10 @@
+{
+  "domain": "roomba_esp_mqtt",
+  "name": "Roomba ESP MQTT",
+  "version": "0.1.0",
+  "documentation": "https://example.local/roomba_esp_mqtt",
+  "issue_tracker": "https://example.local/roomba_esp_mqtt/issues",
+  "codeowners": ["@local"],
+  "requirements": [],
+  "iot_class": "local_push"
+}
