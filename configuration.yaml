@@ -1,0 +1,4 @@
+template: !include templates.yaml
+mqtt: !include mqtt.yaml
+homeassistant:
+  customize: !include customize.yaml
