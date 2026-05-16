@@ -20,7 +20,7 @@ vacuum:
 
     supported_features:
       - start
-      - pause
+      #- pause
       - stop
       - return_home
       - status
