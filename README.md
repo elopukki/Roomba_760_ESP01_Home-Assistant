@@ -2,11 +2,11 @@
 
 https://github.com/esp8266/Arduino
 
-https://github.com/aahlborg/RCRx
+https://github.com/aahlborg/RCRx     https://disk.yandex.ru/d/vDogHv3xgN4Gfg
 
-https://github.com/jfturcot/SimpleTimer
+https://github.com/jfturcot/SimpleTimer     https://disk.yandex.ru/d/t2wYuZJWDzF1FQ
 
-https://github.com/knolleary/pubsubclient
+https://github.com/knolleary/pubsubclient     https://disk.yandex.ru/d/RbMdxoGT5mYSOw
 
-https://www.airspayce.com/mikem/arduino/Roomba/
+https://www.airspayce.com/mikem/arduino/Roomba/     https://disk.yandex.ru/d/y-RW-4mTdx_TbA
 
