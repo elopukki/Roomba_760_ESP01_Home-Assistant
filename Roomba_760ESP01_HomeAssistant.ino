@@ -185,10 +185,10 @@ void playLocateSong() {
 void startCleaning() {
   awake();
   startOI();
-  safeMode();   // dell for 173
-  Serial.write(135);   // Clean as pause/stop toggle on many Roomba Serial.write(173) Stop OI 
+  safeMode();
+  Serial.write(135);   // Clean as pause/stop toggle on many Roomba 
   delay(50);   // 100 for 173
-  currentState = "cleaning";  // idle for 173
+  currentState = "cleaning";
   lastCommandAt = millis();
   publishState();
 }
@@ -218,7 +218,7 @@ void stopCleaning() {
   awake();
   startOI();
   safeMode();
-  Serial.write(135);   // Clean as pause/stop toggle on many Roomba 600/700
+  Serial.write(173);   // Clean as pause/stop toggle on many Roomba 600/700
   delay(100);
   currentState = "idle";
   lastCommandAt = millis();
