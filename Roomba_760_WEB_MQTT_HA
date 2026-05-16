@@ -133,7 +133,7 @@ void stopCleaning() {
   awake();
   startOI();
   safeMode();
-  Serial.write(173); // on your 760 this is usually more useful than 173
+  Serial.write(173); 
   delay(100);
   currentState = "idle";
   lastCommandAt = millis();
