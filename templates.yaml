@@ -1,9 +1,9 @@
 - sensor:
-    - name: "Roomba Battery"
-      unique_id: roomba_battery
-      unit_of_measurement: "%"
-      state: "{{ state_attr('vacuum.roomba_760', 'battery') | int(0) }}"
-      icon: mdi:battery
+    # - name: "Roomba Battery"
+    #   unique_id: roomba_battery
+    #   unit_of_measurement: "%"
+    #   state: "{{ state_attr('vacuum.roomba_760', 'battery') | int(0) }}"
+    #   icon: mdi:battery
  
     - name: "Roomba Charging"
       unique_id: roomba_charging
