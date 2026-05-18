@@ -453,12 +453,12 @@ void loop() {
     lastStatusPublish = now;
   }
 
-  if (currentState == "idle" || currentState == "docked" || currentState == "paused") {
-    if (now - lastKeepAwake > 240000) {
-      awake();
-      lastKeepAwake = now;
-    }
-  }
+  // if (currentState == "idle" || currentState == "docked" || currentState == "paused") {
+  //  if (now - lastKeepAwake > 240000) {
+  //    awake();
+  //    lastKeepAwake = now;
+  //  }
+  // }
 
   delay(20);
 }
