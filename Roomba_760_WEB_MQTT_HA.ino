@@ -8,13 +8,13 @@
 // =====================
 // USER CONFIG
 // =====================
-const char* ssid = "SSID";
-const char* password = "PASS";
+const char* ssid = "WiFi";
+const char* password = "ToHa2791";
 
-const char* mqtt_server = "IPmqtt";
+const char* mqtt_server = "192.168.1.199";
 const int mqtt_port = 1883;
-const char* mqtt_user = "LOGIN";
-const char* mqtt_pass = "PASS";
+const char* mqtt_user = "mqtt";
+const char* mqtt_pass = "mqtt";
 const char* mqtt_client_name = "Roomba760ESP01";
 
 const char* topic_command = "roomba/commands";
@@ -118,17 +118,6 @@ void startCleaning() {
   publishState();
 }
 
-void pauseCleaning() {
-  awake();
-  startOI();
-  safeMode();
-  Serial.write(135); // toggle/pause on many 600/700 series
-  delay(100);
-  currentState = "paused";
-  lastCommandAt = millis();
-  publishState();
-}
-
 void stopCleaning() {
   awake();
   startOI();
@@ -181,7 +170,6 @@ void playLocateSong() {
 
 void processCommand(const String& cmd) {
   if (cmd == "start") startCleaning();
-  else if (cmd == "pause") pauseCleaning();
   else if (cmd == "stop") stopCleaning();
   else if (cmd == "dock" || cmd == "return_to_base") goHome();
   else if (cmd == "spot" || cmd == "clean_spot") spotCleaning();
@@ -373,7 +361,6 @@ void setupWeb() {
   server.on("/api/state", handleApiState);
 
   server.on("/api/start", []() { startCleaning(); redirectHome(); });
-  server.on("/api/pause", []() { pauseCleaning(); redirectHome(); });
   server.on("/api/stop",  []() { stopCleaning(); redirectHome(); });
   server.on("/api/dock",  []() { goHome(); redirectHome(); });
   server.on("/api/spot",  []() { spotCleaning(); redirectHome(); });
