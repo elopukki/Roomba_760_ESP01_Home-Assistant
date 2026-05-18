@@ -8,10 +8,10 @@
 // =====================
 // USER CONFIG
 // =====================
-const char* ssid = "WiFi";
-const char* password = "ToHa2791";
+const char* ssid = "SSID";
+const char* password = "PASS";
 
-const char* mqtt_server = "192.168.1.199";
+const char* mqtt_server = "MQTT_IP";
 const int mqtt_port = 1883;
 const char* mqtt_user = "mqtt";
 const char* mqtt_pass = "mqtt";
