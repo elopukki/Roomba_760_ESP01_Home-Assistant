@@ -12,7 +12,6 @@ vacuum:
     payload_not_available: "offline"
 
     payload_start: "start"
-    payload_pause: "pause"
     payload_stop: "stop"
     payload_return_to_base: "dock"
     payload_clean_spot: "spot"
@@ -20,7 +19,6 @@ vacuum:
 
     supported_features:
       - start
-      #- pause
       - stop
       - return_home
       - status
