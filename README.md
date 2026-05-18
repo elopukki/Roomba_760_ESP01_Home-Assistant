@@ -1,4 +1,4 @@
-Прошивка arduino MQTT для подключения в Home Assistant 2026.5.1 roomba 760 
+Прошивка arduino MQTT для подключения в Home Assistant 2026.5.1 roomba 760 с вэб мордой
 
 vacuum card https://github.com/denysdovhan/vacuum-card
 
