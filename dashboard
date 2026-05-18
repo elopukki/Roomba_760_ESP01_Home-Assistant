@@ -7,7 +7,6 @@ show_toolbar: true
 compact_view: false
 icons:
   start: mdi:play
-  pause: mdi:pause
   stop: mdi:stop
   return_home: mdi:home-map-marker
   locate: mdi:map-marker
