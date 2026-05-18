@@ -10,5 +10,5 @@ https://github.com/knolleary/pubsubclient   копия    https://disk.yandex.ru
 
 https://www.airspayce.com/mikem/arduino/Roomba/   копия    https://disk.yandex.ru/d/y-RW-4mTdx_TbA
 
-http://http://roomba.local/
+вход в вэб интерфейс http://http://roomba.local/
 
