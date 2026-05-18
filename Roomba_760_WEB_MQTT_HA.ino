@@ -231,7 +231,7 @@ void updateSensors() {
 //    batteryPercent = (int)((100L * charge) / capacity);
 //    if (batteryPercent < 0) batteryPercent = 0;
 //    if (batteryPercent > 100) batteryPercent = 100;
-  }
+//  }
 
   charging = (chargeState == 1 || chargeState == 2 || chargeState == 3);
   dockVisible = (omniIr != 0);
