@@ -2,17 +2,17 @@ vacuum.roomba_760:
   friendly_name: "Roomba 760"
   icon: mdi:robot-vacuum
 
-sensor.roomba_battery:
-  friendly_name: "Roomba Battery"
-  icon: mdi:battery
+#sensor.roomba_battery:
+  #friendly_name: "Roomba Battery"
+  #icon: mdi:battery
 
 sensor.roomba_charging:
   friendly_name: "Roomba Charging"
   icon: mdi:battery-charging
 
-sensor.roomba_bin_full:
-  friendly_name: "Roomba Bin Full"
-  icon: mdi:delete-alert
+#sensor.roomba_bin_full:
+  #friendly_name: "Roomba Bin Full"
+  #icon: mdi:delete-alert
 
 sensor.roomba_last_command:
   friendly_name: "Roomba Last Command"
