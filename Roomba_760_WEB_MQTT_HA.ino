@@ -11,10 +11,10 @@
 const char* ssid = "SSID";
 const char* password = "PASS";
 
-const char* mqtt_server = "MQTT_IP";
+const char* mqtt_server = "IPmqtt";
 const int mqtt_port = 1883;
-const char* mqtt_user = "mqtt";
-const char* mqtt_pass = "mqtt";
+const char* mqtt_user = "LOGIN";
+const char* mqtt_pass = "PASS";
 const char* mqtt_client_name = "Roomba760ESP01";
 
 const char* topic_command = "roomba/commands";
@@ -118,6 +118,17 @@ void startCleaning() {
   publishState();
 }
 
+void pauseCleaning() {
+  awake();
+  startOI();
+  safeMode();
+  Serial.write(135); // toggle/pause on many 600/700 series
+  delay(100);
+  currentState = "paused";
+  lastCommandAt = millis();
+  publishState();
+}
+
 void stopCleaning() {
   awake();
   startOI();
@@ -170,6 +181,7 @@ void playLocateSong() {
 
 void processCommand(const String& cmd) {
   if (cmd == "start") startCleaning();
+  else if (cmd == "pause") pauseCleaning();
   else if (cmd == "stop") stopCleaning();
   else if (cmd == "dock" || cmd == "return_to_base") goHome();
   else if (cmd == "spot" || cmd == "clean_spot") spotCleaning();
@@ -189,7 +201,7 @@ void publishAvailabilityOnline() {
 void publishState() {
   StaticJsonDocument<256> doc;
   doc["state"] = currentState;
-  doc["battery"] = batteryPercent;
+//  doc["battery"] = batteryPercent;
   doc["charging"] = charging;
   doc["charge_state"] = chargeStateToText(chargeState);
   doc["dock_visible"] = dockVisible;
@@ -207,18 +219,18 @@ void updateSensors() {
   chargeState = readSensor8(21);   // charge state
   delay(30);
 
-  int16_t charge = readSensor16(25);   // battery charge mAh
-  delay(30);
+//  int16_t charge = readSensor16(25);   // battery charge mAh
+//  delay(30);
 
-  int16_t capacity = readSensor16(26);  // battery capacity mAh
-  delay(30);
+//  int16_t capacity = readSensor16(26);  // battery capacity mAh
+//  delay(30);
 
   uint8_t omniIr = readSensor8(17);     // simple presence hint
 
-  if (capacity > 0 && charge >= 0) {
-    batteryPercent = (int)((100L * charge) / capacity);
-    if (batteryPercent < 0) batteryPercent = 0;
-    if (batteryPercent > 100) batteryPercent = 100;
+//  if (capacity > 0 && charge >= 0) {
+//    batteryPercent = (int)((100L * charge) / capacity);
+//    if (batteryPercent < 0) batteryPercent = 0;
+//    if (batteryPercent > 100) batteryPercent = 100;
   }
 
   charging = (chargeState == 1 || chargeState == 2 || chargeState == 3);
@@ -361,6 +373,7 @@ void setupWeb() {
   server.on("/api/state", handleApiState);
 
   server.on("/api/start", []() { startCleaning(); redirectHome(); });
+  server.on("/api/pause", []() { pauseCleaning(); redirectHome(); });
   server.on("/api/stop",  []() { stopCleaning(); redirectHome(); });
   server.on("/api/dock",  []() { goHome(); redirectHome(); });
   server.on("/api/spot",  []() { spotCleaning(); redirectHome(); });
@@ -435,10 +448,10 @@ void loop() {
 
   unsigned long now = millis();
 
-  if (now - lastStatusPublish > 60000) {
-    updateSensors();
-    lastStatusPublish = now;
-  }
+//  if (now - lastStatusPublish > 60000) {
+//    updateSensors();
+//    lastStatusPublish = now;
+//  }
 
   // if (currentState == "idle" || currentState == "docked" || currentState == "paused") {
   //  if (now - lastKeepAwake > 240000) {
