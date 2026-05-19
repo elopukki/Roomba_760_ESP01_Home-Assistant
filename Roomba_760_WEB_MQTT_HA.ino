@@ -215,9 +215,9 @@ void updateSensors() {
   startOI();
   roomba.start();
 
-  delay(30);
-  chargeState = readSensor8(21);   // charge state
-  delay(30);
+//  delay(30);
+//  chargeState = readSensor8(21);   // charge state
+//  delay(30);
 
 //  int16_t charge = readSensor16(25);   // battery charge mAh
 //  delay(30);
@@ -231,17 +231,17 @@ void updateSensors() {
 //    batteryPercent = (int)((100L * charge) / capacity);
 //    if (batteryPercent < 0) batteryPercent = 0;
 //    if (batteryPercent > 100) batteryPercent = 100;
-//  }
-
-  charging = (chargeState == 1 || chargeState == 2 || chargeState == 3);
-  dockVisible = (omniIr != 0);
-
-  if ((currentState == "returning" || currentState == "idle") && charging) {
-    currentState = "docked";
   }
 
-  publishState();
-}
+//  charging = (chargeState == 1 || chargeState == 2 || chargeState == 3);
+// dockVisible = (omniIr != 0);
+
+//  if ((currentState == "returning" || currentState == "idle") && charging) {
+//    currentState = "docked";
+//  }
+
+//  publishState();
+//}
 
 bool reconnectMqtt() {
   if (client.connected()) return true;
