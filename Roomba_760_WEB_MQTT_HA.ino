@@ -8,13 +8,13 @@
 // =====================
 // USER CONFIG
 // =====================
-const char* ssid = "SSID";
-const char* password = "PASS";
+const char* ssid = "WiFi";
+const char* password = "ToHa2791";
 
-const char* mqtt_server = "IPmqtt";
+const char* mqtt_server = "192.168.1.199";
 const int mqtt_port = 1883;
-const char* mqtt_user = "LOGIN";
-const char* mqtt_pass = "PASS";
+const char* mqtt_user = "mqtt";
+const char* mqtt_pass = "mqtt";
 const char* mqtt_client_name = "Roomba760ESP01";
 
 const char* topic_command = "roomba/commands";
@@ -299,7 +299,7 @@ String htmlEscape(const String& s) {
 
 void handleRoot() {
   String html;
-  html.reserve(3500);
+  html.reserve(3200);
 
   html += "<!doctype html><html><head>";
   html += "<meta name='viewport' content='width=device-width, initial-scale=1'>";
@@ -309,41 +309,43 @@ void handleRoot() {
   html += "body{font-family:Arial,sans-serif;background:#f2f2f2;margin:0;padding:16px;text-align:center;}";
   html += ".card{max-width:420px;margin:0 auto;background:#fff;border-radius:24px;box-shadow:0 8px 24px rgba(0,0,0,.12);padding:18px;}";
   html += "h1{margin:8px 0 0 0;font-size:28px;}";
-  html += ".state{font-size:44px;font-weight:700;margin:24px 0 6px;}";
+  html += ".state{font-size:44px;font-weight:700;margin:24px 0 10px;}";
   html += ".sub{color:#666;font-size:16px;margin-bottom:20px;}";
   html += ".btns{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;}";
-  html += ".btn{display:block;padding:18px 10px;border-radius:18px;text-decoration:none;font-size:20px;font-weight:700;color:#111;background:#e9e9e9;}";
+  html += ".btn{display:flex;align-items:center;justify-content:center;padding:18px 10px;min-height:64px;border-radius:18px;text-decoration:none;font-size:20px;font-weight:700;color:#111;background:#e9e9e9;box-sizing:border-box;}";
   html += ".btn.primary{background:#dff3e3;}";
   html += ".btn.danger{background:#fde2e1;}";
   html += ".btn.blue{background:#e1ecfd;}";
   html += ".btn.gray{background:#efefef;}";
   html += ".full{grid-column:1/-1;}";
-  html += ".small{font-size:14px;color:#666;margin-top:12px;}";
+  html += ".small{font-size:14px;color:#666;margin-top:12px;line-height:1.5;}";
   html += "</style></head><body>";
+
   html += "<div class='card'>";
   html += "<h1>Roomba 760</h1>";
   html += "<div class='state' id='state'>" + htmlEscape(currentState) + "</div>";
-  html += "<div class='sub'>Battery: <span id='battery'>" + String(batteryPercent) + "</span>%</div>";
-  html += "<div class='sub'>Charge: <span id='charge'>" + htmlEscape(String(chargeStateToText(chargeState))) + "</span></div>";
+  html += "<div class='sub'>Состояние зарядки: <span id='charge'>" + htmlEscape(String(chargeStateToText(chargeState))) + "</span></div>";
+
   html += "<div class='btns'>";
-  html += "<a class='btn primary' href='/api/start'>Start</a>";
-  html += "<a class='btn gray' href='/api/pause'>Pause</a>";
-  html += "<a class='btn danger' href='/api/stop'>Stop</a>";
-  html += "<a class='btn blue' href='/api/dock'>Dock</a>";
-  html += "<a class='btn full' href='/api/spot'>Spot</a>";
-  html += "<a class='btn full' href='/api/find'>Find</a>";
+  html += "<a class='btn primary full' href='/api/start'>Старт</a>";
+  html += "<a class='btn danger' href='/api/stop'>Стоп</a>";
+  html += "<a class='btn blue' href='/api/dock'>На базу</a>";
+  html += "<a class='btn gray' href='/api/spot'>Локально</a>";
+  html += "<a class='btn gray' href='/api/find'>Найти робот</a>";
   html += "</div>";
+
   html += "<div class='small'>";
   html += "WiFi: " + WiFi.localIP().toString() + "<br>";
   html += "MQTT: " + String(client.connected() ? "online" : "offline");
   html += "</div>";
+
   html += "<script>";
   html += "async function upd(){try{let r=await fetch('/api/state');let j=await r.json();";
   html += "document.getElementById('state').innerText=j.state;";
-  html += "document.getElementById('battery').innerText=j.battery;";
   html += "document.getElementById('charge').innerText=j.charge_state;";
   html += "}catch(e){}} setInterval(upd,5000); upd();";
   html += "</script>";
+
   html += "</div></body></html>";
 
   server.send(200, "text/html; charset=utf-8", html);
@@ -352,7 +354,6 @@ void handleRoot() {
 void handleApiState() {
   StaticJsonDocument<256> doc;
   doc["state"] = currentState;
-  doc["battery"] = batteryPercent;
   doc["charging"] = charging;
   doc["charge_state"] = chargeStateToText(chargeState);
   doc["dock_visible"] = dockVisible;
@@ -371,14 +372,11 @@ void redirectHome() {
 void setupWeb() {
   server.on("/", handleRoot);
   server.on("/api/state", handleApiState);
-
   server.on("/api/start", []() { startCleaning(); redirectHome(); });
-  server.on("/api/pause", []() { pauseCleaning(); redirectHome(); });
-  server.on("/api/stop",  []() { stopCleaning(); redirectHome(); });
-  server.on("/api/dock",  []() { goHome(); redirectHome(); });
-  server.on("/api/spot",  []() { spotCleaning(); redirectHome(); });
-  server.on("/api/find",  []() { processCommand("find"); redirectHome(); });
-
+  server.on("/api/stop", []() { stopCleaning(); redirectHome(); });
+  server.on("/api/dock", []() { goHome(); redirectHome(); });
+  server.on("/api/spot", []() { spotCleaning(); redirectHome(); });
+  server.on("/api/find", []() { processCommand("find"); redirectHome(); });
   server.begin();
 }
 
