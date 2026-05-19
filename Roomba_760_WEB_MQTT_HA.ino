@@ -8,13 +8,13 @@
 // =====================
 // USER CONFIG
 // =====================
-const char* ssid = "WiFi";
-const char* password = "ToHa2791";
+const char* ssid = "SSID";
+const char* password = "Pasw";
 
-const char* mqtt_server = "192.168.1.199";
+const char* mqtt_server = "IP_MQTT";
 const int mqtt_port = 1883;
-const char* mqtt_user = "mqtt";
-const char* mqtt_pass = "mqtt";
+const char* mqtt_user = "LOGIN";
+const char* mqtt_pass = "PASW";
 const char* mqtt_client_name = "Roomba760ESP01";
 
 const char* topic_command = "roomba/commands";
